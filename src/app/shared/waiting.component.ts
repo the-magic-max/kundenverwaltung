@@ -1,5 +1,3 @@
-
-
 import { Component } from '@angular/core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 

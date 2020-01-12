@@ -1,5 +1,3 @@
-
-
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { HOME_PATH } from '../../shared';

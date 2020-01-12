@@ -1,5 +1,3 @@
-
-
 import { Component, Input, OnInit } from '@angular/core';
 import { KundeGeschlecht } from '../../shared/kunde';
 

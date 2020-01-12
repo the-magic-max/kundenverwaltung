@@ -1,5 +1,3 @@
-
-
 import {
     animate,
     state,

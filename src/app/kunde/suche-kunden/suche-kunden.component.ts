@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { Suchkriterien } from '../shared/kunde.service';
 import { Title } from '@angular/platform-browser';

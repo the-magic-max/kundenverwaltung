@@ -1,5 +1,3 @@
-
-
 import { Component, Input, OnInit } from '@angular/core';
 import { Familienstand } from '../../shared/kunde';
 

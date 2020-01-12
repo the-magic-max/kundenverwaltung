@@ -1,5 +1,3 @@
-
-
 // "Barrel" gemaess Angular Styleguide:
 //  - mehrere ES-Module aggregieren und diese exportieren
 //  - kuenftig weniger Import-Anweisungen

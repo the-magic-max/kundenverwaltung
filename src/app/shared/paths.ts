@@ -1,5 +1,3 @@
-
-
 /**
  * Pfade an der Weboberflaeche
  */

@@ -1,5 +1,3 @@
-
-
 import { RouterModule, Routes } from '@angular/router';
 import { HOME_PATH } from './shared';
 import { HomeComponent } from './home/home.component';

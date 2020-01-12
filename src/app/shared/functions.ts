@@ -1,5 +1,3 @@
-
-
 // siehe ts\src\core\facade\lang.ts
 
 /**

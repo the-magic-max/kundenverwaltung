@@ -1,7 +1,5 @@
 /* eslint-disable max-lines */
 
-
-
 export enum Familienstand {
     IWI_FAMILIENSTAND = 'IWI_FAMILIENSTAND',
     HSKA_FAMILIENSTAND = 'HSKA_FAMILIENSTAND',

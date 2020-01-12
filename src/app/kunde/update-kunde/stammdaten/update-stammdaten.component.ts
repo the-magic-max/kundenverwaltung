@@ -1,14 +1,12 @@
-
-
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
     faCheck,
     faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { Kunde } from '../../shared/kunde';
-import { KundeService } from '../../shared/kunde.service';
 import { FormGroup } from '@angular/forms';
 import { HOME_PATH } from '../../../shared';
+import { Kunde } from '../../shared/kunde';
+import { KundeService } from '../../shared/kunde.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

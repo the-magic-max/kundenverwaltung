@@ -1,5 +1,3 @@
-
-
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 // Charts mittes Sport, siehe http://www.jsgraphs.com und
