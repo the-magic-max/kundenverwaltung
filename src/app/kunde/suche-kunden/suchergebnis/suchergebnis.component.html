@@ -1,20 +1,3 @@
-<!--
-    Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-
 <!-- Template Binding durch die Direktive ngIf -->
 <!-- Eine Direktive ist eine Komponente ohne View -->
 
@@ -65,11 +48,17 @@
                             <td>{{ b.nachname }}</td>
                             <td>
                                 <span [ngSwitch]="b.familienstand">
-                                    <span *ngSwitchCase="'IWI_FAMILIENSTAND'"
-                                        >Iwi Familienstand</span
+                                    <span *ngSwitchCase="'L'"
+                                        >Ledig</span
                                     >
-                                    <span *ngSwitchCase="'HSKA_FAMILIENSTAND'">
-                                        Hska Familienstand
+                                    <span *ngSwitchCase="'VH'">
+                                        Verheiratet
+                                    </span>
+                                    <span *ngSwitchCase="'G'">
+                                        Geschieden
+                                    </span>
+                                    <span *ngSwitchCase="'VW'">
+                                        Verwitwet
                                     </span>
                                     <span *ngSwitchDefault>unbekannt</span>
                                 </span>
