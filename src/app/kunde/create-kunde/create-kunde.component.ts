@@ -78,8 +78,8 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
             return false;
         }
 
-        const neuesKunde = Kunde.fromForm(this.form.value);
-        console.log('CreateKundeComponent.onSave(): neuesKunde=', neuesKunde);
+        const neuerKunde = Kunde.fromForm(this.form.value);
+        console.log('CreateKundeComponent.onSave(): neuesKunde=', neuerKunde);
 
         const successFn = (location: string | undefined) => {
             console.log(
@@ -118,7 +118,7 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
             this.errorMsg = errors;
         };
         this.saveSubscription = this.kundeService.save(
-            neuesKunde,
+            neuerKunde,
             successFn,
             errorFn,
         );

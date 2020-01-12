@@ -33,6 +33,14 @@
                 />
                 <label for="lesenInput">Lesen</label>
             </div>
+            <div class="checkbox">
+                <input
+                    type="checkbox"
+                    id="reisenInput"
+                    formControlName="reisen"
+                />
+                <label for="reisenInput">Reisen</label>
+            </div>
         </div>
     </div>
 
@@ -44,7 +52,7 @@
                 [disabled]="form.pristine || !form.valid"
             >
                 <fa-icon [icon]="faCheck"></fa-icon>
-                <span class="ml-1">Schlagw&ouml;rter aktualisieren</span>
+                <span class="ml-1">Interessen aktualisieren</span>
             </button>
         </div>
     </div>
