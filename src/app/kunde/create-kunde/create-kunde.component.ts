@@ -20,10 +20,11 @@ import {
     faCheck,
     faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
-import { Kunde } from '../shared/kunde';
-import { KundeService } from '../shared/kunde.service';
 import { FormGroup } from '@angular/forms';
 import { HOME_PATH } from '../../shared';
+import { Kunde } from '../shared/kunde';
+import { KundeService } from '../shared/kunde.service';
+
 import { Router } from '@angular/router';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { Subscription } from 'rxjs';

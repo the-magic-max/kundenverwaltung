@@ -16,14 +16,15 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { CreateGeschlechtModule } from './create-geschlecht.module';
-import { CreateKundeComponent } from './create-kunde.component';
+import { CreateEmailModule } from './create-email.module';
+import { CreateFamilienstandModule } from './create-familienstand.module';
 import { CreateGeburtsdatumModule } from './create-geburtsdatum.module';
+import { CreateGeschlechtModule } from './create-geschlecht.module';
+import { CreateInteressenModule } from './create-interessen.module';
+import { CreateKundeComponent } from './create-kunde.component';
+import { CreateNachnameModule } from './create-nachname.module';
 import { CreateNewsletterModule } from './create-newsletter.module';
 import { CreateUmsatzModule } from './create-umsatz.module';
-import { CreateInteressenModule } from './create-interessen.module';
-import { CreateNachnameModule } from './create-nachname.module';
-import { CreateFamilienstandModule } from './create-familienstand.module';
 import { ErrorMessageModule } from '../../shared/error-message.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +44,7 @@ import { Title } from '@angular/platform-browser';
         HttpClientModule,
         ReactiveFormsModule,
         FontAwesomeModule,
+        CreateEmailModule,
         CreateGeschlechtModule,
         CreateGeburtsdatumModule,
         CreateNewsletterModule,
