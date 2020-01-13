@@ -2,9 +2,15 @@
 /* eslint-disable max-lines */
 
 export enum KundeGeschlecht {
-    W = 'W',
-    M = 'M',
-    D = 'D',
+    WEIBLICH = 'W',
+    MÄNNLICH = 'M',
+    DIVERS = 'D',
+}
+
+export enum Interesse {
+    SPORT = 'S',
+    LESEN = 'L',
+    REISEN = 'R',
 }
 
 export enum Familienstand {
