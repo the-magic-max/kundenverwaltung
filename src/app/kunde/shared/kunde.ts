@@ -145,7 +145,7 @@ export class Kunde {
 
         let beispielAdresse = new Adresse('76772', 'Durlach');
         let beispielUmsatz = new Umsatz(20.0, 'EUR');
-        let beispielUser = new User("dolly", "p");
+        let beispielUser = new User('dolly', 'p');
 
         const kunde = new Kunde(
             id,

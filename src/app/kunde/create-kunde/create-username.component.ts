@@ -4,7 +4,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Komponente mit dem Tag &lt;hs-create-username&gt;, um das Erfassungsformular
- * f&uuml;r ein neues Kunde zu realisieren.
+ * f&uuml;r einen neuen Kunde zu realisieren.
  */
 @Component({
     // moduleId: module.id,

@@ -12,7 +12,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './create-password.component.html',
 })
 export class CreatePasswordComponent implements OnInit {
-    private static readonly MIN_LENGTH = 2;
+    private static readonly MIN_LENGTH = 1;
 
     @Input()
     readonly form!: FormGroup;
