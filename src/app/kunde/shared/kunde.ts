@@ -1,17 +1,9 @@
-import 'moment/locale/de'
-import * as moment from 'moment'
+/* eslint-disable */
 
-moment.locale('de')
-
-export enum Interesse {
-    SPORT = 'S',
-    LESEN = 'L',
-    REISEN = 'R',
-}
-
-export enum Geschlecht {
-    MÄNNLICH = 'M',
-    WEIBLICH = 'W',
+export enum KundeGeschlecht {
+    W = 'W',
+    M = 'M',
+    D = 'D',
 }
 
 export enum Familienstand {
@@ -22,94 +14,89 @@ export enum Familienstand {
 }
 
 export class Adresse {
-    plz?: string
-    ort?: string
+    plz?: string;
+    ort?: string;
     constructor(plz: string, ort: string) {
-        this.plz = plz
-        this.ort = ort
-    }
-}
-
-export class User {
-    username?: string
-    password?: string
-    constructor(username: string, password: string) {
-        this.password = password
-        this.username = username
+        this.plz = plz;
+        this.ort = ort;
     }
 }
 
 export class Umsatz {
-    betrag?: number
-    waehrung?: string
+    betrag?: number;
+    waehrung?: string;
     constructor(betrag: number, weahrung: string) {
-        this.betrag = betrag
-        this.waehrung = weahrung
+        this.betrag = betrag;
+        this.waehrung = weahrung;
     }
 }
-type UUID = string
-/**
- * Gemeinsame Datenfelder unabh&auml;ngig, ob die Kundedaten von einem Server
- * (z.B. RESTful Web Service) oder von einem Formular kommen.
- */
+
 export interface KundeShared {
-    _id?: UUID
-    nachname?: string
-    email?: string
-    kategorie?: number
-    newsletter?: boolean
-    geburtsdatum?: Date
-    umsatz?: Umsatz
-    homepage?: string
-    geschlecht?: Geschlecht
-    familienstand?: Familienstand
-    //Dürfen die Interessen da drin stehen ?
-    interessen?: Array<string>
-    adresse?: Adresse
-    version?: number
-    user?: User
+    _id?: string;
+    nachname?: string;
+    email?: string;
+    kategorie?: number;
+    newsletter?: boolean;
+    geburtsdatum?: Date;
+    umsatz?: Umsatz;
+    homepage?: string;
+    geschlecht?: KundeGeschlecht;
+    familienstand?: Familienstand | '';
+    interessen?: Array<string>;
+    adresse?: Adresse;
+    version?: number;
 }
 
 interface Link {
-    rel: string
-    href: string
+    href: string;
 }
 
 export interface KundeServer extends KundeShared {
-    interessen?: Array<string>
-    links?: Array<Link>
+    interessen?: Array<string>;
+    _links?: {
+        self: Link;
+        list?: Link;
+        add?: Link;
+        update?: Link;
+        remove?: Link;
+    };
 }
 
 export interface KundeForm extends KundeShared {
-    sport?: boolean
-    lesen?: boolean
-    reisen?: boolean
+    sport?: boolean;
+    lesen?: boolean;
+    reisen?: boolean;
 }
 
 /**
- * Model als Plain-Old-JavaScript-Object (POJO) fuer die Daten *UND*
+ * Model als Plain-Old-Sport-Object (POJO) fuer die Daten *UND*
  * Functions fuer Abfragen und Aenderungen.
  */
 export class Kunde {
+    private static readonly SPACE = 2;
+
+    // wird aufgerufen von fromServer() oder von fromForm()
+    // eslint-disable-next-line max-params
     private constructor(
-        // tslint:disable-next-line:variable-name
-        public _id: UUID | undefined,
-        public nachname: string | undefined,
-        public email: string | undefined,
+        public _id: string | undefined,
+        public nachname: string,
+        public email: string,
         public kategorie: number | undefined,
         public newsletter: boolean | undefined,
         public geburtsdatum: Date | undefined,
-        public umsatz: Umsatz | undefined,
+        public umsatz: Umsatz,
         public homepage: string | undefined,
-        public geschlecht: Geschlecht | undefined,
-        public familienstand: Familienstand | undefined,
+        public geschlecht: KundeGeschlecht,
+        public familienstand: Familienstand | undefined | '',
         public interessen: Array<string> | undefined,
         public adresse: Adresse | undefined,
         public version: number | undefined,
-        public user: User | undefined,
     ) {
-        this.interessen =
-            interessen === undefined ? [] : (this.interessen = interessen)
+        // TODO Parsing, ob der Geburtsdatum-String valide ist
+        this.geburtsdatum =
+            geburtsdatum === undefined ? new Date() : new Date(geburtsdatum);
+        this.interessen = interessen === undefined ? [] : interessen;
+        console.log('Kunde(): this=', this);
     }
 
     /**
@@ -119,23 +106,27 @@ export class Kunde {
      * @return Das initialisierte Kunde-Objekt
      */
     static fromServer(kundeServer: KundeServer, etag?: string) {
-        let selfLink: string | undefined
-        const selfLinkJson = kundeServer.links && kundeServer.links[0]
-        if (selfLinkJson !== undefined && selfLinkJson.rel === 'self') {
-            selfLink = selfLinkJson.href
+        let selfLink: string | undefined;
+        const { _links } = kundeServer;
+        if (_links !== undefined) {
+            const { self } = _links;
+            selfLink = self.href;
         }
-        let id: UUID | undefined
+        let id: string | undefined;
         if (selfLink !== undefined) {
-            const lastSlash = selfLink.lastIndexOf('/')
-            id = selfLink.substring(lastSlash + 1)
+            const lastSlash = selfLink.lastIndexOf('/');
+            id = selfLink.substring(lastSlash + 1);
         }
 
-        let version: number | undefined
+        let version: number | undefined;
         if (etag !== undefined) {
             // Anfuehrungszeichen am Anfang und am Ende entfernen
-            const versionStr = etag.substring(1, etag.length - 1)
-            version = Number.parseInt(versionStr, 10)
+            const versionStr = etag.substring(1, etag.length - 1);
+            version = Number.parseInt(versionStr, 10);
         }
+
+        let beispielAdresse = new Adresse('76772', 'Durlach');
+        let beispielUmsatz = new Umsatz(20.0, 'EUR');
 
         const kunde = new Kunde(
             id,
@@ -144,17 +135,16 @@ export class Kunde {
             kundeServer.kategorie,
             kundeServer.newsletter,
             kundeServer.geburtsdatum,
-            kundeServer.umsatz,
+            beispielUmsatz,
             kundeServer.homepage,
             kundeServer.geschlecht,
             kundeServer.familienstand,
             kundeServer.interessen,
-            kundeServer.adresse,
+            beispielAdresse,
             version,
-            kundeServer.user,
-        )
-        console.log('Kunde.fromServer(): kunde=', kunde)
-        return kunde
+        );
+        console.log('Kunde.fromServer(): kunde=', kunde);
+        return kunde;
     }
 
     /**
@@ -163,20 +153,17 @@ export class Kunde {
      * @return Das initialisierte Kunde-Objekt
      */
     static fromForm(kundeForm: KundeForm) {
-        const interessen: Array<string> = []
+        console.log('Kunde.fromForm(): kundeForm=', kundeForm);
+        const interessen: Array<string> = [];
+        if (kundeForm.sport === true) {
+            interessen.push('S');
+        }
         if (kundeForm.lesen === true) {
-            interessen.push('L')
+            interessen.push('L');
         }
         if (kundeForm.reisen === true) {
-            interessen.push('R')
+            interessen.push('R');
         }
-        if (kundeForm.sport === true) {
-            interessen.push('S')
-        }
-
-        let eineAdresse = new Adresse('77777', 'Karlsbad')
-        let einUmsatz = new Umsatz(20.0, 'EUR')
-        let user = new User('daria', 'password')
 
         const kunde = new Kunde(
             kundeForm._id,
@@ -185,99 +172,135 @@ export class Kunde {
             kundeForm.kategorie,
             kundeForm.newsletter,
             kundeForm.geburtsdatum,
-            einUmsatz,
+            kundeForm.umsatz,
             kundeForm.homepage,
             kundeForm.geschlecht,
             kundeForm.familienstand,
-            interessen,
-            eineAdresse,
+            kundeForm.interessen,
+            kundeForm.adresse,
             kundeForm.version,
-            user,
-        )
-        console.log('Kunde.fromForm(): kunde=', kunde)
-        return kunde
+        );
+        console.log('Kunde.fromForm(): kunde=', kunde);
+        return kunde;
+    }
+
+    // Property in TypeScript wie in C#
+    // https://www.typescriptlang.org/docs/handbook/classes.html#accessors
+    get datumFormatted() {
+        // z.B. 7. Mai 2020
+        const formatter = new Intl.DateTimeFormat('de', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+        return this.geburtsdatum === undefined
+            ? ''
+            : formatter.format(this.geburtsdatum);
     }
 
     /**
-     * Abfrage, ob im Kundetitel der angegebene Teilstring enthalten ist. Dabei
+     * Abfrage, ob im Kundenachname der angegebene Teilstring enthalten ist. Dabei
      * wird nicht auf Gross-/Kleinschreibung geachtet.
      * @param nachname Zu &uuml;berpr&uuml;fender Teilstring
-     * @return true, falls der Teilstring im Kundetitel enthalten ist. Sonst
+     * @return true, falls der Teilstring im Kundenachname enthalten ist. Sonst
      *         false.
      */
     containsNachname(nachname: string) {
         return this.nachname === undefined
             ? false
-            : this.nachname.toLowerCase().includes(nachname.toLowerCase())
+            : this.nachname.toLowerCase().includes(nachname.toLowerCase());
     }
 
     /**
-     * Abfrage, ob es zum Kunde auch Interessen gibt.
-     * @return true, falls es mindestens eine Interesse gibt. Sonst false.
+     * Abfrage, ob das Kunde dem angegebenen Familienstand zugeordnet ist.
+     * @param familienstand der Name des Familienstands
+     * @return true, falls das Kunde dem Familienstand zugeordnet ist. Sonst false.
      */
+    hasFamilienstand(familienstand: string) {
+        return this.familienstand === familienstand;
+    }
+
 
     /**
-     * Aktualisierung der Stammdaten des Kunden-Objekts.
-     * @param nachname
-     * @param familienstand
-     * @param email
-     * @param homepage
-     * @param kategorie
-     * @param newsletter
+     * Aktualisierung der Stammdaten des Kunde-Objekts.
+     * @param nachname Der neue Kundenachname
+     * @param rating Die neue Bewertung
+     * @param geschlecht Die neue Kundeart (M oder W)
+     * @param familienstand Der neue Familienstand
+     * @param umsatz Der neue Umsatz
+     * @param rabatt Der neue Rabatt
      */
     // eslint-disable-next-line max-params
     updateStammdaten(
         nachname: string,
-        familienstand: Familienstand,
-        email: string,
-        homepage: string,
+        geschlecht: KundeGeschlecht,
+        familienstand: Familienstand | undefined | '',
         kategorie: number | undefined,
-        newsletter: boolean,
+        geburtsdatum: Date | undefined,
+        umsatz: Umsatz,
     ) {
-        this.nachname = nachname
-        this.familienstand = familienstand
-        this.email = email
-        this.homepage = homepage
-        this.kategorie = kategorie
-        this.newsletter = newsletter
+        this.nachname = nachname;
+        this.geschlecht = geschlecht;
+        this.familienstand = familienstand;
+        this.geburtsdatum =
+            geburtsdatum === undefined ? new Date() : geburtsdatum;
+        this.kategorie = kategorie;
+        this.umsatz = umsatz;
     }
 
-    hasInteressen() {
-        if (this.interessen === undefined || this.interessen === null) {
-            return false
-        }
-        return this.interessen.length !== 0
-    }
     /**
-     * Abfrage, ob es zum Kunde die angegebene Interesse gibt.
-     * @param interesse die zu überprüf. Interesse
-     * @return true, falls es die Interesse gibt. Sonst false.
+     * Abfrage, ob es zum Kunde auch Schlagw&ouml;rter gibt.
+     * @return true, falls es mindestens ein Interesse gibt. Sonst false.
+     */
+    hasInteressen() {
+        if (this.interessen === undefined) {
+            return false;
+        }
+        return this.interessen.length !== 0;
+    }
+
+    /**
+     * Abfrage, ob es zum Kunde das angegebene Interesse gibt.
+     * @param interesse das zu &uuml;berpr&uuml;fende Interesse
+     * @return true, falls es das Interesse gibt. Sonst false.
      */
     hasInteresse(interesse: string) {
         if (this.interessen === undefined) {
-            return false
+            return false;
         }
-        return this.interessen.includes(interesse)
+        return this.interessen.includes(interesse);
     }
 
     /**
-     * Aktualisierung der Interessen des Kunde-Objekts.
-     * @param lesen ist das Schlagwort LESEN gesetzt
-     * @param reisen ist das Schlagwort REISEN gesetzt
-     * @param sport ist das Schlagwort SPORT gesetzt
+     * Aktualisierung der Schlagw&ouml;rter des Kunde-Objekts.
+     * @param sport ist das Interesse SPORT gesetzt
+     * @param lesen ist das Interesse LESEN gesetzt
+     * @param reisen ist das Interesse REISEN gesetzt
      */
-    // updateSchlagwoerter
+    updateInteressen(sport: boolean, lesen: boolean, reisen: boolean) {
+        this.resetInteressen();
+        if (sport) {
+            this.addInteresse('SPORT');
+        }
+        if (lesen) {
+            this.addInteresse('LESEN');
+        }
+        if (reisen) {
+            this.addInteresse('REISEN');
+        }
+    }
 
     /**
-     * Konvertierung des Kundeobjektes in ein JSON-Objekt für den RESTful
+     * Konvertierung des Kundeobjektes in ein JSON-Objekt f&uuml;r den RESTful
      * Web Service.
-     * @return Das JSON-Objekt für den RESTful Web Service
+     * @return Das JSON-Objekt f&uuml;r den RESTful Web Service
      */
     toJSON(): KundeServer {
-        // const datum =
-        //     this.datum === undefined
-        //         ? undefined
-        //         : this.datum.format('YYYY-MM-DD')
+        const geburtsdatum =
+            this.geburtsdatum === undefined
+                ? undefined
+                : this.geburtsdatum.toISOString();
+        console.log(`toJson(): geburtsdatum=${geburtsdatum}`);
         return {
             _id: this._id,
             nachname: this.nachname,
@@ -291,35 +314,21 @@ export class Kunde {
             familienstand: this.familienstand,
             interessen: this.interessen,
             adresse: this.adresse,
-            user: this.user,
-        }
-    }
-
-    updateInteressen(reisen: boolean, lesen: boolean, sport: boolean) {
-        this.resetInteressen()
-        if (reisen) {
-            this.addInteresse('REISEN')
-        }
-        if (sport) {
-            this.addInteresse('SPORT')
-        }
-        if (lesen) {
-            this.addInteresse('LESEN')
-        }
+        };
     }
 
     toString() {
-        return JSON.stringify(this, null, 2)
+        return JSON.stringify(this, null, Kunde.SPACE);
     }
 
     private resetInteressen() {
-        this.interessen = []
+        this.interessen = [];
     }
 
     private addInteresse(interesse: string) {
         if (this.interessen === undefined) {
-            this.interessen = []
+            this.interessen = [];
         }
-        this.interessen.push(interesse)
+        this.interessen.push(interesse);
     }
 }
