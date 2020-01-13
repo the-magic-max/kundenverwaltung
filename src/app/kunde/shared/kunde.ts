@@ -8,9 +8,9 @@ export enum KundeGeschlecht {
 }
 
 export enum Interesse {
-    SPORT = 'S',
-    LESEN = 'L',
-    REISEN = 'R',
+    S = 'S',
+    L = 'L',
+    R = 'R',
 }
 
 export enum Familienstand {
@@ -279,20 +279,20 @@ export class Kunde {
 
     /**
      * Aktualisierung der Schlagw&ouml;rter des Kunde-Objekts.
-     * @param sport ist das Interesse SPORT gesetzt
-     * @param lesen ist das Interesse LESEN gesetzt
-     * @param reisen ist das Interesse REISEN gesetzt
+     * @param sport ist das Interesse S gesetzt
+     * @param lesen ist das Interesse L gesetzt
+     * @param reisen ist das Interesse R gesetzt
      */
     updateInteressen(sport: boolean, lesen: boolean, reisen: boolean) {
         this.resetInteressen();
         if (sport) {
-            this.addInteresse('SPORT');
+            this.addInteresse('S');
         }
         if (lesen) {
-            this.addInteresse('LESEN');
+            this.addInteresse('L');
         }
         if (reisen) {
-            this.addInteresse('REISEN');
+            this.addInteresse('R');
         }
     }
 
