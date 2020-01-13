@@ -71,9 +71,7 @@ export class KundeService {
      * @param httpClient injizierter Service HttpClient (von Angular)
      * @return void
      */
-    constructor(
-        private readonly httpClient: HttpClient,
-    ) {
+    constructor(private readonly httpClient: HttpClient) {
         this.baseUriKunden = `${BASE_URI}/${KUNDEN_PATH_REST}`;
         console.log(
             `KundeService.constructor(): baseUriKunde=${this.baseUriKunden}`,
