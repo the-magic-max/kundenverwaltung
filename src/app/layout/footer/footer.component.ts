@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+// eslint-disable-next-line sort-imports
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Komponente f&uuml;r den Footer.
@@ -12,6 +14,8 @@ import { Component } from '@angular/core';
     styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
+    readonly faEnvelope = faEnvelope;
+    readonly faPhone = faPhone;
     constructor() {
         console.log('FooterComponent.constructor()');
     }

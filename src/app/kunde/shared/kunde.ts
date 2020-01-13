@@ -220,7 +220,6 @@ export class Kunde {
         return this.familienstand === familienstand;
     }
 
-
     /**
      * Aktualisierung der Stammdaten des Kunde-Objekts.
      * @param nachname Der neue Kundenachname
