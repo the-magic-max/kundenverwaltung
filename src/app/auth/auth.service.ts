@@ -18,7 +18,6 @@
 import { BasicAuthService } from './basic-auth.service';
 import { CookieService } from './cookie.service';
 import { Injectable } from '@angular/core';
-import { JwtService } from './jwt.service';
 import { Subject } from 'rxjs';
 
 // export const ROLLE_ADMIN = 'admin';
@@ -34,7 +33,6 @@ export class AuthService {
     private readonly _rollenSubject = new Subject<Array<string>>();
 
     constructor(
-        private readonly jwtService: JwtService,
         private readonly cookieService: CookieService,
         private readonly basicAuthService: BasicAuthService,
     ) {
