@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* eslint-disable max-lines */
 
 export enum KundeGeschlecht {
     W = 'W',
@@ -219,7 +220,6 @@ export class Kunde {
     hasFamilienstand(familienstand: string) {
         return this.familienstand === familienstand;
     }
-
 
     /**
      * Aktualisierung der Stammdaten des Kunde-Objekts.
