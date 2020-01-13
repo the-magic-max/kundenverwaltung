@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { Component } from '@angular/core';
 // eslint-disable-next-line sort-imports
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 // eslint-disable-next-line prettier/prettier
 import {
     faFacebook,
@@ -22,6 +22,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 export class FooterComponent {
     readonly faEnvelope = faEnvelope;
     readonly faPhone = faPhone;
+    readonly faMapMarkerAlt = faMapMarkerAlt;
     readonly faFacebook = faFacebook as IconProp;
     readonly faLinkedin = faLinkedin as IconProp;
     readonly faForumbee = faForumbee as IconProp;
