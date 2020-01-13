@@ -1,6 +1,7 @@
 <div class="card">
-    <div class="card-header">
-        <span class="ml-1 font-weight-bold">Neuer Kunde</span>
+    <div class="card-header text-warning bg-secondary">
+        <fa-icon [icon]="faUserAlt"></fa-icon>
+        <span class="ml-1 font-weight-bold"> Neuen Kunden anlegen </span>
     </div>
 
     <div class="card-body">
@@ -54,7 +55,7 @@
                            [disabled]="..." fuer Input = Property Binding
                     -->
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-warning"
                         (click)="onSave()"
                         [disabled]="!form.valid"
                     >

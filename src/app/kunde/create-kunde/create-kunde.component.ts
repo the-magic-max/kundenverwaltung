@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
     faCheck,
     faExclamationTriangle,
+    faUserAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { HOME_PATH } from '../../shared';
@@ -29,6 +30,7 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
 
     readonly faCheck = faCheck;
     readonly faExclamationTriangle = faExclamationTriangle;
+    readonly faUserAlt = faUserAlt;
     readonly faExclamationTriangleSize: SizeProp = '2x';
 
     private saveSubscription: Subscription | undefined;
