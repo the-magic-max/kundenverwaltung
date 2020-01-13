@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
@@ -7,3 +8,14 @@
         "types": ["node"]
     }
 }
+=======
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/scripts",
+        "module": "commonjs",
+        "lib": ["es5", "es2015", "es2016", "es2017"],
+        "types": ["node"]
+    }
+}
+>>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19

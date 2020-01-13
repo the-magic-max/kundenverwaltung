@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
     Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
 
@@ -28,3 +29,18 @@
     <hs-details-newsletter [newsletter]="kunde.newsletter"></hs-details-newsletter>
     <hs-details-isbn [isbn]="kunde.isbn"></hs-details-isbn>
 </div>
+=======
+<div *ngIf="kunde">
+    <hs-details-nachname [nachname]="kunde.nachname"></hs-details-nachname>
+    <hs-details-email [email]="kunde.email"></hs-details-email>
+    <hs-details kategorie [kategorie]="kunde.kategorie"></hs-details>
+    <hs-details-newsletter [newsletter]="kunde.newsletter"></hs-details-newsletter>
+    <hs-details-geburtsdatum [formatted]="kunde.datumFormatted"></hs-details-geburtsdatum>
+    <hs-details-umsatz [umsatz]="kunde.umsatz"></hs-details-umsatz>
+    <hs-details-homepage [homepage]="kunde.homepage"></hs-details-homepage>
+    <hs-details-geschlecht [geschlecht]="kunde.geschlecht"></hs-details-geschlecht>
+    <hs-details-familienstand [familienstand]="kunde.familienstand"></hs-details-familienstand>
+    <hs-details-interessen [interessen]="kunde.interessen"></hs-details-interessen>
+    <hs-details-adresse [adresse]="kunde.adresse"></hs-details-adresse>
+</div>
+>>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19

@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 src/main.ts
 src/polyfills.ts
 src/environments/environment*.ts
 dist
 node_modules
+=======
+src/main.ts
+src/polyfills.ts
+src/environments/environment*.ts
+dist
+node_modules
+>>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19

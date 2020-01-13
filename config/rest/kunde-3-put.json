@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "nachname": "Testt",
     "rating": 5,
@@ -11,3 +12,18 @@
     "homepage": "https://test.de/",
     "interessen": ["SPORT", "LESEN"]
 }
+=======
+{
+    "nachname": "Testt",
+    "rating": 5,
+    "geschlecht": "W",
+    "familienstand": "IWI_FAMILIENSTAND",
+    "umsatz": 9999,
+    "rabatt": 99,
+    "newsletter": true,
+    "geburtsdatum": "2017-02-01T00:00:00.000Z",
+    "isbn": "0-0070-9732-8",
+    "homepage": "https://test.de/",
+    "interessen": ["SPORT", "LESEN"]
+}
+>>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19

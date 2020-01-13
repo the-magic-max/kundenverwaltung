@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "_id": "00000000-0000-0000-0000-000000000003",
     "nachname": "?!",
@@ -12,3 +13,19 @@
     "homepage": "anyHomepage",
     "interessen": ["SPORT"]
 }
+=======
+{
+    "_id": "00000000-0000-0000-0000-000000000003",
+    "nachname": "?!",
+    "rating": 5,
+    "geschlecht": "W",
+    "familienstand": "Ledig",
+    "umsatz": 9999,
+    "rabatt": 99,
+    "newsletter": true,
+    "geburtsdatum": "2017-02-01T00:00:00.000Z",
+    "isbn": "isbn-falsch",
+    "homepage": "anyHomepage",
+    "interessen": ["SPORT"]
+}
+>>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19
