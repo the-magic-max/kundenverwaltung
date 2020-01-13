@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
     // <footer>
     //     <div class="sticky font-small text-center">&copy; J&uuml;rgen Zimmermann</div>
     // </footer>
-    template: '',
-    // styleUrls: ['./footer.component.scss'],
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
     constructor() {
