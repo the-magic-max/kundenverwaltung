@@ -1,8 +1,10 @@
 /* eslint-disable max-lines */
 
 export enum Familienstand {
-    IWI_FAMILIENSTAND = 'IWI_FAMILIENSTAND',
-    HSKA_FAMILIENSTAND = 'HSKA_FAMILIENSTAND',
+    L = 'LEDIG',
+    VH = 'VERHEIRATET',
+    G = 'GESCHIEDEN',
+    VW = 'VERWITWET',
 }
 
 export enum KundeGeschlecht {
@@ -64,7 +66,7 @@ export interface KundeServer extends KundeShared {
 export interface KundeForm extends KundeShared {
     sport?: boolean;
     lesen?: boolean;
-    reisen: boolean;
+    reisen?: boolean;
 }
 
 /**
@@ -247,7 +249,7 @@ export class Kunde {
     }
 
     /**
-     * Abfrage, ob es zum Kunde auch Schlagw&ouml;rter gibt.
+     * Abfrage, ob es zum Kunde auch Interessen gibt.
      * @return true, falls es mindestens ein Interesse gibt. Sonst false.
      */
     hasInteressen() {
@@ -270,9 +272,10 @@ export class Kunde {
     }
 
     /**
-     * Aktualisierung der Schlagw&ouml;rter des Kunde-Objekts.
+     * Aktualisierung der Interessen des Kunde-Objekts.
      * @param sport ist das Interesse SPORT gesetzt
      * @param lesen ist das Interesse LESEN gesetzt
+     * @param reisen ist das Interesse REISEN gesetzt
      */
     updateInteressen(sport: boolean, lesen: boolean, reisen: boolean) {
         this.resetInteressen();
@@ -283,7 +286,7 @@ export class Kunde {
             this.addInteresse('LESEN');
         }
         if (reisen) {
-            this.addInteresse('LESEN');
+            this.addInteresse('REISEN');
         }
     }
 
