@@ -1,22 +1,3 @@
-<!--
-    Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-
-<!-- Template Binding durch die Direktive ngIf -->
-<!-- Eine Direktive ist eine Komponente ohne View -->
 
 <div class="mt-2">
     <hs-waiting *ngIf="waiting; else suchergebnis"></hs-waiting>
@@ -37,6 +18,7 @@
                             <th>Nr.</th>
                             <th>ID</th>
                             <th>Nachname</th>
+                            <th>Email</th>
                             <th>Familienstand</th>
                             <th>Interessen</th>
                             <th>
@@ -63,28 +45,35 @@
                             <td>{{ i + 1 }}</td>
                             <td>{{ b._id }}</td>
                             <td>{{ b.nachname }}</td>
+                            <td>{{ b.email }}</td>
                             <td>
                                 <span [ngSwitch]="b.familienstand">
-                                    <span *ngSwitchCase="'IWI_FAMILIENSTAND'"
-                                        >Iwi Familienstand</span
+                                    <span *ngSwitchCase="'VH'"
+                                        >Verheiratet</span
                                     >
-                                    <span *ngSwitchCase="'HSKA_FAMILIENSTAND'">
-                                        Hska Familienstand
+                                    <span *ngSwitchCase="'G'">
+                                        Geschieden
                                     </span>
+                                    <span *ngSwitchCase="'VW'"
+                                        >Verwitwet</span
+                                    >
+                                    <span *ngSwitchCase="'L'"
+                                        >Ledig</span
+                                    >
                                     <span *ngSwitchDefault>unbekannt</span>
                                 </span>
                             </td>
                             <td>
                                 <span *ngFor="let sw of b.interessen">
                                     <span [ngSwitch]="sw">
-                                        <span *ngSwitchCase="'SPORT'">
-                                            Sport<br />
+                                        <span *ngSwitchCase="'L'">
+                                            Lesen<br />
                                         </span>
-                                        <span *ngSwitchCase="'LESEN'">
-                                            Lesen
+                                        <span *ngSwitchCase="'S'">
+                                            Sport
                                         </span>
-                                        <span *ngSwitchCase="'REISEN'">
-                                            Reisen
+                                        <span *ngSwitchCase="'R'">
+                                            Reisen<br />
                                         </span>
                                     </span>
                                 </span>
@@ -96,7 +85,7 @@
                                         https://getbootstrap.com/docs/4.0/components/modal
                                     -->
                                 <a
-                                    [routerLink]="['..', b._id]"
+                                    [routerLink]="['/details', b._id]"
                                     title="Details anzeigen"
                                 >
                                     <fa-icon [icon]="faSearchPlus"></fa-icon>
@@ -128,14 +117,7 @@
                     </span>
                 </div>
 
-                <div>
-                    <fa-icon [icon]="faInfoCircle"></fa-icon>
-                    <span class="ml-1">
-                        Zur Anzeige der JSON-Datens&auml;tze in
-                        suchergebnis.html am Dateiende den Kommentar beim Tag
-                        &lt;pre&gt; entfernen
-                    </span>
-                </div>
+                
             </div>
         </div>
 
