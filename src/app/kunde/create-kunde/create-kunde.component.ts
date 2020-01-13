@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
     faCheck,
@@ -111,6 +112,7 @@ export class CreateKundeComponent implements OnInit, OnDestroy {
         };
         const errorFn = (
             status: number,
+            // eslint-disable-next-line max-len
             errors: { [s: string]: any } | undefined, // eslint-disable-line @typescript-eslint/no-explicit-any
         ) => {
             console.error(

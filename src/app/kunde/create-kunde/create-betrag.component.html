@@ -16,28 +16,28 @@
 -->
 
 <div class="form-group row">
-    <label for="umsatzInput" class="col col-2 form-control-label">
-        Umsatz *
+    <label for="betragInput" class="col col-2 form-control-label">
+        Betrag *
     </label>
     <div class="col col-10" [formGroup]="form">
         <div class="input-group">
             <input
-                id="umsatzInput"
-                placeholder="Umsatz, z.B. 123.45"
+                id="betragInput"
+                placeholder="Betrag, z.B. 123.45"
                 required
                 class="form-control"
                 type="number"
-                formControlName="umsatz"
-                [class.border-danger]="umsatz.invalid && umsatz.touched"
+                formControlName="betrag"
+                [class.border-danger]="betrag.invalid && betrag.touched"
             />
             <span class="input-group-addon">&#x20ac;</span>
         </div>
 
-        <div *ngIf="umsatz.invalid && umsatz.touched" class="alert alert-danger">
-            <div *ngIf="umsatz.errors && umsatz.errors.required">
+        <div *ngIf="betrag.invalid && betrag.touched" class="alert alert-danger">
+            <div *ngIf="betrag.errors && betrag.errors.required">
                 <fa-icon [icon]="faExclamationCircle"></fa-icon>
                 <span class="ml-1">
-                    Ein Umsatz muss eingegeben werden, z.B. 123.45
+                    Ein Betrag muss eingegeben werden, z.B. 123.45
                 </span>
             </div>
         </div>

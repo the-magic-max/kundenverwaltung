@@ -16,12 +16,14 @@
  */
 
 import { CommonModule } from '@angular/common';
-import { DetailsUmsatzComponent } from './details-umsatz.component';
+import { CreateBetragComponent } from './create-betrag.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [DetailsUmsatzComponent],
-    exports: [DetailsUmsatzComponent],
-    imports: [CommonModule],
+    declarations: [CreateBetragComponent],
+    exports: [CreateBetragComponent],
+    imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
 })
-export class DetailsUmsatzModule {}
+export class CreateBetragModule {}

@@ -89,14 +89,14 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
             return undefined;
         }
 
-        // rating, umsatz und rabatt koennen im Formular nicht geaendert werden
+        // rating, betrag und rabatt koennen im Formular nicht geaendert werden
         this.kunde.updateStammdaten(
             this.form.value.nachname,
             this.form.value.geschlecht,
             this.form.value.familienstand,
             this.form.value.rating,
             this.kunde.geburtsdatum,
-            this.kunde.umsatz,
+            this.kunde.betrag,
         );
         console.log('kunde=', this.kunde);
 

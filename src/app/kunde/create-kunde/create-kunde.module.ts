@@ -11,7 +11,7 @@ import { CreateInteressenModule } from './create-interessen.module';
 import { CreateKundeComponent } from './create-kunde.component';
 import { CreateNachnameModule } from './create-nachname.module';
 import { CreateNewsletterModule } from './create-newsletter.module';
-import { CreateUmsatzModule } from './create-umsatz.module';
+import { CreateBetragModule } from './create-betrag.module';
 import { ErrorMessageModule } from '../../shared/error-message.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,7 +39,7 @@ import { Title } from '@angular/platform-browser';
         CreateGeschlechtModule,
         CreateGeburtsdatumModule,
         CreateNewsletterModule,
-        CreateUmsatzModule,
+        CreateBetragModule,
         CreateInteressenModule,
         CreateNachnameModule,
         CreateFamilienstandModule,

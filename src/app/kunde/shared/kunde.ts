@@ -51,16 +51,21 @@ export interface KundeShared {
     _id?: string;
     nachname?: string;
     email?: string;
+    user?: User;
+    username?: string;
+    password?: string;
+    adresse?: Adresse;
+    ort?: string;
+    plz?: string;
     kategorie?: number;
     newsletter?: boolean;
     geburtsdatum?: Date;
     umsatz?: Umsatz;
+    betrag?: number;
     homepage?: string;
     geschlecht?: KundeGeschlecht;
     familienstand?: Familienstand | '';
     interessen?: Array<string>;
-    adresse?: Adresse;
-    user?: User;
     version?: number;
 }
 
@@ -98,16 +103,19 @@ export class Kunde {
         public _id: string | undefined,
         public nachname: string,
         public email: string,
+        public username: string | undefined,
+        public password: string | undefined,
+        public ort: string | undefined,
+        public plz: string | undefined,
         public kategorie: number | undefined,
         public newsletter: boolean | undefined,
         public geburtsdatum: Date | undefined,
-        public umsatz: Umsatz,
+        public betrag: number | undefined,
+        public waehrung: string | undefined,
         public homepage: string | undefined,
         public geschlecht: KundeGeschlecht,
         public familienstand: Familienstand | undefined | '',
         public interessen: Array<string> | undefined,
-        public adresse: Adresse | undefined,
-        public user: User | undefined,
         public version: number | undefined,
     ) {
         // TODO Parsing, ob der Geburtsdatum-String valide ist
@@ -143,24 +151,23 @@ export class Kunde {
             version = Number.parseInt(versionStr, 10);
         }
 
-        let beispielAdresse = new Adresse('76772', 'Durlach');
-        let beispielUmsatz = new Umsatz(20.0, 'EUR');
-        let beispielUser = new User('dolly', 'p');
-
         const kunde = new Kunde(
             id,
             kundeServer.nachname,
             kundeServer.email,
+            kundeServer.username,
+            kundeServer.password,
+            kundeServer.ort,
+            kundeServer.plz,
             kundeServer.kategorie,
             kundeServer.newsletter,
             kundeServer.geburtsdatum,
-            beispielUmsatz,
+            kundeServer.umsatz.betrag,
+            kundeServer.umsatz.waehrung,
             kundeServer.homepage,
             kundeServer.geschlecht,
             kundeServer.familienstand,
             kundeServer.interessen,
-            beispielAdresse,
-            beispielUser,
             version,
         );
         console.log('Kunde.fromServer(): kunde=', kunde);
@@ -185,20 +192,25 @@ export class Kunde {
             interessen.push('R');
         }
 
+        const waehrungEUR = 'EUR';
+
         const kunde = new Kunde(
             kundeForm._id,
             kundeForm.nachname,
             kundeForm.email,
+            kundeForm.username,
+            kundeForm.password,
+            kundeForm.ort,
+            kundeForm.plz,
             kundeForm.kategorie,
             kundeForm.newsletter,
             kundeForm.geburtsdatum,
-            kundeForm.umsatz,
+            kundeForm.betrag,
+            waehrungEUR,
             kundeForm.homepage,
             kundeForm.geschlecht,
             kundeForm.familienstand,
             kundeForm.interessen,
-            kundeForm.adresse,
-            kundeForm.user,
             kundeForm.version,
         );
         console.log('Kunde.fromForm(): kunde=', kunde);
@@ -247,7 +259,7 @@ export class Kunde {
      * @param rating Die neue Bewertung
      * @param geschlecht Die neue Kundeart (M oder W)
      * @param familienstand Der neue Familienstand
-     * @param umsatz Der neue Umsatz
+     * @param betrag Der neue Betrag
      * @param rabatt Der neue Rabatt
      */
     // eslint-disable-next-line max-params
@@ -257,7 +269,7 @@ export class Kunde {
         familienstand: Familienstand | undefined | '',
         kategorie: number | undefined,
         geburtsdatum: Date | undefined,
-        umsatz: Umsatz,
+        betrag: number,
     ) {
         this.nachname = nachname;
         this.geschlecht = geschlecht;
@@ -265,7 +277,7 @@ export class Kunde {
         this.geburtsdatum =
             geburtsdatum === undefined ? new Date() : geburtsdatum;
         this.kategorie = kategorie;
-        this.umsatz = umsatz;
+        this.betrag = betrag;
     }
 
     /**
@@ -328,13 +340,22 @@ export class Kunde {
             kategorie: this.kategorie,
             newsletter: this.newsletter,
             geburtsdatum: this.geburtsdatum,
-            umsatz: this.umsatz,
+            umsatz: {
+                betrag: this.betrag,
+                waehrung: this.waehrung,
+            },
             homepage: this.homepage,
             geschlecht: this.geschlecht,
             familienstand: this.familienstand,
             interessen: this.interessen,
-            adresse: this.adresse,
-            user: this.user,
+            adresse: {
+                plz: this.plz,
+                ort: this.ort,
+            },
+            user: {
+                username: this.username,
+                password: this.password,
+            },
         };
     }
 

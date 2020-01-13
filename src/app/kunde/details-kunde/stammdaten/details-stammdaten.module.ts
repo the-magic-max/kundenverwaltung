@@ -9,7 +9,7 @@ import { DetailsKategorieModule } from './details-kategorie.module';
 import { DetailsNachnameModule } from './details-nachname.module';
 import { DetailsNewsletterModule } from './details-newsletter.module';
 import { DetailsStammdatenComponent } from './details-stammdaten.component';
-import { DetailsUmsatzModule } from './details-umsatz.module';
+import { DetailsBetragModule } from './details-betrag.module';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { NgModule } from '@angular/core';
         DetailsGeschlechtModule,
         DetailsGeburtsdatumModule,
         DetailsNewsletterModule,
-        DetailsUmsatzModule,
+        DetailsBetragModule,
         DetailsNachnameModule,
         DetailsFamilienstandModule,
     ],
