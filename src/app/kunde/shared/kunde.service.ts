@@ -29,7 +29,6 @@ import {
     HttpParams,
 } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { DiagrammService } from '../../shared/diagramm.service';
 import { Injectable } from '@angular/core';
 // https://github.com/ReactiveX/rxjs/blob/master/src/internal/Subject.ts
 // https://github.com/ReactiveX/rxjs/blob/master/src/internal/Observable.ts
@@ -73,7 +72,6 @@ export class KundeService {
      * @return void
      */
     constructor(
-        private readonly diagrammService: DiagrammService,
         private readonly httpClient: HttpClient,
     ) {
         this.baseUriKunden = `${BASE_URI}/${KUNDEN_PATH_REST}`;
@@ -354,163 +352,6 @@ export class KundeService {
         return this.httpClient.delete(uri).subscribe(successFn, errorFnDelete);
     }
 
-    // http://www.sitepoint.com/15-best-javascript-charting-libraries
-    // http://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries
-    // http://mikemcdearmon.com/portfolio/techposts/charting-libraries-using-d3
-
-    // D3 (= Data Driven Documents) https://d3js.org ist das fuehrende Produkt
-    // fuer Datenvisualisierung:
-    //  initiale Version durch die Dissertation von Mike Bostock
-    //  gesponsort von der New York Times, seinem heutigen Arbeitgeber
-    //  basiert auf SVG = scalable vector graphics: Punkte, Linien, Kurven, ...
-    //  ca 250.000 Downloads/Monat bei https://www.npmjs.com
-    //  https://github.com/mbostock/d3 mit ueber 100 Contributors
-
-    // Weitere Alternativen:
-    // Google Charts: https://google-developers.appspot.com/chart
-    // Chartist.js:   http://gionkunz.github.io/chartist-js
-    // n3-chart:      http://n3-charts.github.io/line-chart
-
-    // Chart.js ist deutlich einfacher zu benutzen als D3
-    //  basiert auf <canvas>
-    //  ca 25.000 Downloads/Monat bei https://www.npmjs.com
-    //  https://github.com/nnnick/Chart.js mit ueber 60 Contributors
-
-    /**
-     * Ein Balkendiagramm erzeugen und bei einem Tag <code>canvas</code>
-     * einf&uuml;gen.
-     * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
-     */
-    /* createBarChart(chartElement: HTMLCanvasElement) {
-        console.log('KundeService.createBarChart()');
-        const uri = this.baseUriKunden;
-        return this.httpClient
-            .get<Array<KundeServer>>(uri)
-            .pipe(
-                // ID aus Self-Link
-                map(kunden => kunden.map(kunde => this.setKundeId(kunde))),
-                map(kunden => {
-                    const kundenGueltig = kunden.filter(
-                        b => b._id !== null && b.rating !== undefined,
-                    );
-                    const labels = kundenGueltig.map(b => b._id);
-                    console.log(
-                        'KundeService.createBarChart(): labels: ',
-                        labels,
-                    );
-
-                    const data = kundenGueltig.map(b => b.rating);
-                    const datasets = [{ label: 'Bewertung', data }];
-
-                    return {
-                        type: 'bar',
-                        data: { labels, datasets },
-                    };
-                }),
-            )
-            .subscribe(config =>
-                this.diagrammService.createChart(chartElement, config),
-            );
-    }
-    
-    /**
-     * Ein Liniendiagramm erzeugen und bei einem Tag <code>canvas</code>
-     * einf&uuml;gen.
-     * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
-     */
-    /*
-    createLinearChart(chartElement: HTMLCanvasElement) {
-        console.log('KundeService.createLinearChart()');
-        const uri = this.baseUriKunden;
-
-        return this.httpClient
-            .get<Array<KundeServer>>(uri)
-            .pipe(
-                // ID aus Self-Link
-                map(kunden => kunden.map(b => this.setKundeId(b))),
-                map(kunden => {
-                    const kundenGueltig = kunden.filter(
-                        b => b._id !== null && b.rating !== undefined,
-                    );
-                    const labels = kundenGueltig.map(b => b._id);
-                    console.log(
-                        'KundeService.createLinearChart(): labels: ',
-                        labels,
-                    );
-
-                    const data = kundenGueltig.map(b => b.rating);
-                    const datasets = [{ label: 'Bewertung', data }];
-
-                    return {
-                        type: 'line',
-                        data: { labels, datasets },
-                    };
-                }),
-            )
-            .subscribe(config =>
-                this.diagrammService.createChart(chartElement, config),
-            );
-    }
-    */
-    /**
-     * Ein Tortendiagramm erzeugen und bei einem Tag <code>canvas</code>
-     * einf&uuml;gen.
-     * @param chartElement Das HTML-Element zum Tag <code>canvas</code>
-     */
-    /*
-    createPieChart(chartElement: HTMLCanvasElement) {
-        console.log('KundeService.createPieChart()');
-        const uri = this.baseUriKunden;
-
-        return this.httpClient
-            .get<Array<KundeServer>>(uri)
-            .pipe(
-                // ID aus Self-Link
-                map(kunden => kunden.map(kunde => this.setKundeId(kunde))),
-                map(kunden => {
-                    const kundenGueltig = kunden.filter(
-                        b => b._id !== null && b.rating !== undefined,
-                    );
-                    const labels = kundenGueltig.map(b => b._id);
-                    console.log(
-                        'KundeService.createPieChart(): labels: ',
-                        labels,
-                    );
-                    const ratings = kundenGueltig.map(b => b.rating);
-
-                    const anzahl = ratings.length;
-                    const backgroundColor = new Array<string>(anzahl);
-                    const hoverBackgroundColor = new Array<string>(anzahl);
-                    Array(anzahl)
-                        .fill(true)
-                        .forEach((_, i) => {
-                            backgroundColor[
-                                i
-                            ] = this.diagrammService.getBackgroundColor(i);
-                            hoverBackgroundColor[
-                                i
-                            ] = this.diagrammService.getHoverBackgroundColor(i);
-                        });
-
-                    const data: Chart.ChartData = {
-                        labels,
-                        datasets: [
-                            {
-                                data: ratings,
-                                backgroundColor,
-                                hoverBackgroundColor,
-                            },
-                        ],
-                    };
-
-                    return { type: 'pie', data };
-                }),
-            )
-            .subscribe(config =>
-                this.diagrammService.createChart(chartElement, config),
-            );
-    }
-    */
     /**
      * Suchkriterien in Request-Parameter konvertieren.
      * @param suchkriterien Suchkriterien fuer den GET-Request.
