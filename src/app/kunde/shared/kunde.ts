@@ -38,6 +38,15 @@ export class Umsatz {
     }
 }
 
+export class User {
+    username?: string;
+    password?: string;
+    constructor(username: string, password: string) {
+        this.username = username;
+        this.password = password;
+    }
+}
+
 export interface KundeShared {
     _id?: string;
     nachname?: string;
@@ -51,6 +60,7 @@ export interface KundeShared {
     familienstand?: Familienstand | '';
     interessen?: Array<string>;
     adresse?: Adresse;
+    user?: User;
     version?: number;
 }
 
@@ -97,6 +107,7 @@ export class Kunde {
         public familienstand: Familienstand | undefined | '',
         public interessen: Array<string> | undefined,
         public adresse: Adresse | undefined,
+        public user: User | undefined,
         public version: number | undefined,
     ) {
         // TODO Parsing, ob der Geburtsdatum-String valide ist
@@ -134,6 +145,7 @@ export class Kunde {
 
         let beispielAdresse = new Adresse('76772', 'Durlach');
         let beispielUmsatz = new Umsatz(20.0, 'EUR');
+        let beispielUser = new User("dolly", "p");
 
         const kunde = new Kunde(
             id,
@@ -148,6 +160,7 @@ export class Kunde {
             kundeServer.familienstand,
             kundeServer.interessen,
             beispielAdresse,
+            beispielUser,
             version,
         );
         console.log('Kunde.fromServer(): kunde=', kunde);
@@ -185,6 +198,7 @@ export class Kunde {
             kundeForm.familienstand,
             kundeForm.interessen,
             kundeForm.adresse,
+            kundeForm.user,
             kundeForm.version,
         );
         console.log('Kunde.fromForm(): kunde=', kunde);
@@ -320,6 +334,7 @@ export class Kunde {
             familienstand: this.familienstand,
             interessen: this.interessen,
             adresse: this.adresse,
+            user: this.user,
         };
     }
 
