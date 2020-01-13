@@ -376,14 +376,14 @@ export class KundeService {
         if (email !== '') {
             httpParams = httpParams.set('email', email);
         }
+        if (reisen === true) {
+            httpParams = httpParams.set('interessen', 'R')
+        }
         if (sport === true) {
-            httpParams = httpParams.set('sport', 'true');
+            httpParams = httpParams.set('interessen', 'S')
         }
         if (lesen === true) {
-            httpParams = httpParams.set('lesen', 'true');
-        }
-        if (reisen === true) {
-            httpParams = httpParams.set('reisen', 'true');
+            httpParams = httpParams.set('interessen', 'L')
         }
         return httpParams;
     }
