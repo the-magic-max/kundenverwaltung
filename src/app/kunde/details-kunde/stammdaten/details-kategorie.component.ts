@@ -1,17 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * Komponente f&uuml;r das Tag <code>hs-details-kategorie</code>
+ */
 @Component({
     selector: 'hs-details-kategorie',
-    template: `
-        <div class="row mt-2">
-            <label class="col col-1"> Kategorie </label>
-            <div class="col col-11">{{ kategorie }}</div>
-        </div>
-    `,
+    templateUrl: './details-kategorie.component.html',
 })
 export class DetailsKategorieComponent implements OnInit {
     @Input()
-    readonly kategorie!: string;
+    readonly kategorie!: number | '';
 
     ngOnInit() {
         console.log(`DetailsKategorieComponent.kategorie=${this.kategorie}`);
