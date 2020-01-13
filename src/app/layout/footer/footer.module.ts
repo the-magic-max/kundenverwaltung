@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer.component';
 import { NgModule } from '@angular/core';
 
 @NgModule({
     declarations: [FooterComponent],
     exports: [FooterComponent],
+    imports: [FontAwesomeModule],
 })
 export class FooterModule {}

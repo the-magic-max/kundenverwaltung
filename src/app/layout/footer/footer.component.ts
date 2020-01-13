@@ -7,9 +7,6 @@ import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
  */
 @Component({
     selector: 'hs-footer',
-    // <footer>
-    //     <div class="sticky font-small text-center">&copy; J&uuml;rgen Zimmermann</div>
-    // </footer>
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
 })
