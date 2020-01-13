@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { SucheEmailModule } from './suche-email.module';
 import { SucheGeschlechtModule } from './suche-geschlecht.module';
 import { SucheInteressenModule } from './suche-interessen.module';
 import { SucheNachnameModule } from './suche-nachname.module';
@@ -41,7 +40,6 @@ import { SuchformularComponent } from './suchformular.component';
         SucheGeschlechtModule,
         SucheInteressenModule,
         SucheNachnameModule,
-        SucheEmailModule,
     ],
 })
 export class SuchformularModule {}

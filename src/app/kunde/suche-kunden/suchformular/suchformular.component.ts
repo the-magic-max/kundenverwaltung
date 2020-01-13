@@ -18,7 +18,6 @@
 import { Component, Output, ViewChild } from '@angular/core';
 import { faInfoCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
-import { SucheEmailComponent } from './suche-email.component';
 import { SucheGeschlechtComponent } from './suche-geschlecht.component';
 import { SucheInteressenComponent } from './suche-interessen.component';
 import { SucheNachnameComponent } from './suche-nachname.component';
@@ -51,9 +50,6 @@ export class SuchformularComponent {
     @ViewChild(SucheNachnameComponent, { static: true })
     private readonly sucheNachnameComponent!: SucheNachnameComponent;
 
-    @ViewChild(SucheEmailComponent, { static: true })
-    private readonly sucheEmailComponent!: SucheEmailComponent;
-
     @ViewChild(SucheGeschlechtComponent, { static: true })
     private readonly sucheGeschlechtComponent!: SucheGeschlechtComponent;
 
@@ -73,18 +69,16 @@ export class SuchformularComponent {
      */
     onFind() {
         const { nachname } = this.sucheNachnameComponent;
-        const { email } = this.sucheEmailComponent;
         const { geschlecht } = this.sucheGeschlechtComponent;
         const { sport } = this.sucheInteressenComponent;
         const { lesen } = this.sucheInteressenComponent;
         const { reisen } = this.sucheInteressenComponent;
         console.log(
-            `SuchformularComponent.onFind(): nachname=${nachname}, email=${email}, geschlecht=${geschlecht}, sport=${sport}, lesen=${lesen}, reisen=${reisen}`,
+            `SuchformularComponent.onFind(): nachname=${nachname}, geschlecht=${geschlecht}, sport=${sport}, lesen=${lesen}, reisen=${reisen}`,
         );
 
         this.suchkriterien.next({
             nachname,
-            email,
             geschlecht,
             interessen: { sport, lesen, reisen },
         });

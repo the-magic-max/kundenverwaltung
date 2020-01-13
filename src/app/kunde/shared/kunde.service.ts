@@ -364,7 +364,7 @@ export class KundeService {
         );
         let httpParams = new HttpParams();
 
-        const { nachname, email, geschlecht, interessen } = suchkriterien;
+        const { nachname, geschlecht, interessen } = suchkriterien;
         const { sport, lesen, reisen } = interessen;
 
         if (nachname !== '') {
@@ -372,9 +372,6 @@ export class KundeService {
         }
         if (geschlecht !== '') {
             httpParams = httpParams.set('geschlecht', geschlecht);
-        }
-        if (email !== '') {
-            httpParams = httpParams.set('email', email);
         }
         if (reisen === true) {
             httpParams = httpParams.set('interessen', 'R');
@@ -406,7 +403,6 @@ export class KundeService {
 
 export interface Suchkriterien {
     nachname: string;
-    email: string;
     geschlecht: KundeGeschlecht | '';
     interessen: { sport: boolean; lesen: boolean; reisen: boolean };
 }
