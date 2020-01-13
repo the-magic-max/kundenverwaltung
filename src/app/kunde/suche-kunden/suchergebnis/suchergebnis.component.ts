@@ -210,7 +210,6 @@ export class SuchergebnisComponent implements OnChanges, OnInit, OnDestroy {
     private reset() {
         this.suchkriterien = {
             nachname: '',
-            email: '',
             geschlecht: '',
             interessen: { sport: false, lesen: false, reisen: false },
         };
