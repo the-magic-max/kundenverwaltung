@@ -377,13 +377,13 @@ export class KundeService {
             httpParams = httpParams.set('email', email);
         }
         if (reisen === true) {
-            httpParams = httpParams.set('interessen', 'R')
+            httpParams = httpParams.set('interessen', 'R');
         }
         if (sport === true) {
-            httpParams = httpParams.set('interessen', 'S')
+            httpParams = httpParams.set('interessen', 'S');
         }
         if (lesen === true) {
-            httpParams = httpParams.set('interessen', 'L')
+            httpParams = httpParams.set('interessen', 'L');
         }
         return httpParams;
     }
