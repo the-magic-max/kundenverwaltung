@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { KundeGeschlecht } from '../../shared/kunde';
 import { Component } from '@angular/core';
+import { KundeGeschlecht } from '../../shared/kunde';
 import { fadeIn } from '../../../shared';
 
 /**
