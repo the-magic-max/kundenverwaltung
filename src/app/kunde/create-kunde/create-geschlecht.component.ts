@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
-/**
- * Komponente mit dem Tag &lt;hs-create-geschlecht&gt;, um das Erfassungsformular
- * f&uuml;r ein neues Kunde zu realisieren.
- */
-@Component({
-    selector: 'hs-create-geschlecht',
-    templateUrl: './create-geschlecht.component.html',
-})
-export class CreateGeschlechtComponent implements OnInit {
-    @Input()
-    readonly form!: FormGroup;
-
-    readonly geschlecht = new FormControl('M');
-
-    ngOnInit() {
-        console.log('CreateGeschlechtComponent.ngOnInit');
-        // siehe formControlName innerhalb @Component({templateUrl: ...})
-        this.form.addControl('geschlecht', this.geschlecht);
-    }
-}
-=======
 /*
  * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
@@ -63,4 +38,3 @@ export class CreateGeschlechtComponent implements OnInit {
         this.form.addControl('geschlecht', this.geschlecht);
     }
 }
->>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19

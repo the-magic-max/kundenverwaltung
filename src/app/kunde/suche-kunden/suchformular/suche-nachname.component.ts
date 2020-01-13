@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-
-/**
- * Komponente f&uuml;r das Tag <code>hs-suche-nachname</code>
- */
-@Component({
-    selector: 'hs-suche-nachname',
-    templateUrl: './suche-nachname.component.html',
-})
-export class SucheNachnameComponent {
-    nachname = '';
-
-    constructor() {
-        console.log('SucheNachnameComponent.constructor()');
-    }
-}
-=======
 /*
  * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
@@ -49,4 +31,3 @@ export class SucheNachnameComponent {
         console.log('SucheNachnameComponent.constructor()');
     }
 }
->>>>>>> 1b74d64dea4661a1a26e7a510422a8824dad5a19
