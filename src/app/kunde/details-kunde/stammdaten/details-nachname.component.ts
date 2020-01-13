@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
     selector: 'hs-details-nachname',
     template: `
         <div class="row mt-2">
-            <label class="col col-1"> Nachname </label>
-            <div class="col col-11">{{ nachname }}</div>
+            <label class="col col-2"> Nachname </label>
+            <div class="col col-10">{{ nachname }}</div>
         </div>
     `,
 })

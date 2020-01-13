@@ -4,8 +4,8 @@ import { Component, Input, OnInit } from '@angular/core';
     selector: 'hs-details-email',
     template: `
         <div class="row mt-2">
-            <label class="col col-1"> Email </label>
-            <div class="col col-11">{{ email }}</div>
+            <label class="col col-2"> Email </label>
+            <div class="col col-10">{{ email }}</div>
         </div>
     `,
 })

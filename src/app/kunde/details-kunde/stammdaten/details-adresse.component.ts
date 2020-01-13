@@ -8,10 +8,10 @@ import { Adresse } from '../../shared/kunde';
     selector: 'hs-details-adresse',
     template: `
         <div class="row mt-2">
-            <label class="col col-1"> Adresse </label>
-            <div class="col col-11">{{ adresse.ort }}</div>
-            <label class="col col-1"></label>
-            <div class="col col-11">{{ adresse.plz }}</div>
+            <label class="col col-2"> Adresse </label>
+            <div class="col col-10">{{ adresse.ort }}</div>
+            <label class="col col-2"></label>
+            <div class="col col-10">{{ adresse.plz }}</div>
         </div>
     `,
 })

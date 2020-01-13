@@ -96,7 +96,7 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
             this.form.value.familienstand,
             this.form.value.rating,
             this.kunde.geburtsdatum,
-            this.kunde.betrag,
+            this.kunde.umsatz.betrag,
         );
         console.log('kunde=', this.kunde);
 

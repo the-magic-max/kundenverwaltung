@@ -5,7 +5,12 @@ import { Component, Input, OnInit } from '@angular/core';
  */
 @Component({
     selector: 'hs-details-betrag',
-    templateUrl: './details-betrag.component.html',
+    template: `
+        <div class="row mt-2">
+            <label class="col col-2"> Betrag </label>
+            <div class="col col-10">{{ betrag }}€</div>
+        </div>
+    `,
 })
 export class DetailsBetragComponent implements OnInit {
     @Input()
