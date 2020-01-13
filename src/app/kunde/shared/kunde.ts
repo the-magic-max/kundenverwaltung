@@ -8,9 +8,9 @@ export enum KundeGeschlecht {
 }
 
 export enum Interesse {
-    S = 'S',
-    L = 'L',
-    R = 'R',
+    SPORT = 'S',
+    LESEN = 'L',
+    REISEN = 'R',
 }
 
 export enum Familienstand {
