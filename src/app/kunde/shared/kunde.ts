@@ -301,6 +301,7 @@ export class Kunde {
                 ? undefined
                 : this.geburtsdatum.toISOString();
         console.log(`toJson(): geburtsdatum=${geburtsdatum}`);
+
         return {
             _id: this._id,
             nachname: this.nachname,

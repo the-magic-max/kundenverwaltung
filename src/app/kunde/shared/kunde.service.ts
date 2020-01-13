@@ -1,8 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable */
 
-
-
 import { BASE_URI, KUNDEN_PATH_REST } from '../../shared';
 import { Kunde, KundeGeschlecht, KundeServer, Familienstand } from './kunde';
 // Bereitgestellt durch HttpClientModule
