@@ -48,25 +48,26 @@ export class User {
 }
 
 export interface KundeShared {
-    _id?: string;
-    nachname?: string;
-    email?: string;
-    user?: User;
-    username?: string;
-    password?: string;
-    adresse?: Adresse;
-    ort?: string;
-    plz?: string;
-    kategorie?: number;
-    newsletter?: boolean;
-    geburtsdatum?: Date;
-    umsatz?: Umsatz;
-    betrag?: number;
-    homepage?: string;
-    geschlecht?: KundeGeschlecht;
-    familienstand?: Familienstand | '';
-    interessen?: Array<string>;
-    version?: number;
+    _id?: string | undefined;
+    nachname?: string | undefined;
+    email?: string | undefined;
+    user?: User | undefined;
+    username?: string | undefined;
+    password?: string | undefined;
+    adresse?: Adresse | undefined;
+    ort?: string | undefined;
+    plz?: string | undefined;
+    kategorie?: number | undefined;
+    newsletter?: boolean | undefined;
+    geburtsdatum?: Date | undefined;
+    umsatz?: Umsatz | undefined;
+    betrag?: number | undefined;
+    waehrung?: string | undefined;
+    homepage?: string | undefined;
+    geschlecht?: KundeGeschlecht | undefined;
+    familienstand?: Familienstand | undefined | '';
+    interessen?: Array<string> | undefined;
+    version?: number | undefined;
 }
 
 interface Link {
@@ -103,18 +104,15 @@ export class Kunde {
         public _id: string | undefined,
         public nachname: string | undefined,
         public email: string | undefined,
-        public user: User | undefined,
-        // public username: string | undefined,
-        //public password: string | undefined,
-        public adresse: Adresse | undefined,
-        // public ort: string | undefined,
-        // public plz: string | undefined,
+        public username: string | undefined,
+        public password: string | undefined,
+        public ort: string | undefined,
+        public plz: string | undefined,
         public kategorie: number | undefined,
         public newsletter: boolean | undefined,
         public geburtsdatum: Date | undefined,
-        public umsatz: Umsatz | undefined,
-        // public betrag: number | undefined,
-        // public waehrung: string | undefined,
+        public betrag: number | undefined,
+        public waehrung: string | undefined,
         public homepage: string | undefined,
         public geschlecht: KundeGeschlecht | undefined,
         public familienstand: Familienstand | undefined | '',
@@ -158,12 +156,15 @@ export class Kunde {
             id,
             kundeServer.nachname,
             kundeServer.email,
-            new User(kundeServer.username, kundeServer.password),
-            new Adresse( kundeServer.plz, kundeServer.ort),
+            kundeServer.username,
+            kundeServer.password,
+            kundeServer.plz,
+            kundeServer.ort,
             kundeServer.kategorie,
             kundeServer.newsletter,
             kundeServer.geburtsdatum,
-            new Umsatz(kundeServer.umsatz.betrag, kundeServer.umsatz.waehrung),
+            kundeServer.betrag,
+            kundeServer.waehrung,
             kundeServer.homepage,
             kundeServer.geschlecht,
             kundeServer.familienstand,
@@ -198,12 +199,15 @@ export class Kunde {
             kundeForm._id,
             kundeForm.nachname,
             kundeForm.email,
-            new User(kundeForm.username, kundeForm.password),
-            new Adresse(kundeForm.plz, kundeForm.ort),
+            kundeForm.username,
+            kundeForm.password,
+            kundeForm.ort,
+            kundeForm.plz,
             kundeForm.kategorie,
             kundeForm.newsletter,
             kundeForm.geburtsdatum,
-            new Umsatz(kundeForm.betrag, waehrungEUR),
+            kundeForm.betrag,
+            waehrungEUR,
             kundeForm.homepage,
             kundeForm.geschlecht,
             kundeForm.familienstand,
@@ -261,12 +265,17 @@ export class Kunde {
      */
     // eslint-disable-next-line max-params
     updateStammdaten(
-        nachname: string,
-        geschlecht: KundeGeschlecht,
+        nachname: string | undefined,
+        geschlecht: KundeGeschlecht | undefined,
         familienstand: Familienstand | undefined | '',
         kategorie: number | undefined,
         geburtsdatum: Date | undefined,
-        betrag: number,
+        betrag: number | undefined,
+        waehrung: string | undefined,
+        plz: string | undefined,
+        ort: string | undefined,
+        username: string | undefined,
+        password: string | undefined,
     ) {
         this.nachname = nachname;
         this.geschlecht = geschlecht;
@@ -274,7 +283,12 @@ export class Kunde {
         this.geburtsdatum =
             geburtsdatum === undefined ? new Date() : geburtsdatum;
         this.kategorie = kategorie;
-        this.umsatz.betrag = betrag;
+        this.betrag = 0;
+        this.waehrung = 'EUR';
+        this.plz = '00000';
+        this.ort = 'Testort';
+        this.username = 'test';
+        this.password = 'p';
     }
 
     /**
@@ -338,20 +352,20 @@ export class Kunde {
             newsletter: this.newsletter,
             geburtsdatum: this.geburtsdatum,
             umsatz: {
-                betrag: this.umsatz.betrag,
-                waehrung: this.umsatz.waehrung,
+                betrag: this.betrag,
+                waehrung: this.waehrung,
             },
             homepage: this.homepage,
             geschlecht: this.geschlecht,
             familienstand: this.familienstand,
             interessen: this.interessen,
             adresse: {
-                plz: this.adresse.plz,
-                ort: this.adresse.ort,
+                plz: this.plz,
+                ort: this.ort,
             },
             user: {
-                username: this.user.username,
-                password: this.user.password,
+                username: this.username,
+                password: this.password,
             },
         };
     }

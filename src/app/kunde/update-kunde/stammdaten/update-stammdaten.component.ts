@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /*
  * Copyright (C) 2015 - present Juergen Zimmermann, Hochschule Karlsruhe
  *
@@ -96,7 +97,12 @@ export class UpdateStammdatenComponent implements OnInit, OnDestroy {
             this.form.value.familienstand,
             this.form.value.rating,
             this.kunde.geburtsdatum,
-            this.kunde.umsatz.betrag,
+            this.kunde.betrag,
+            this.kunde.waehrung,
+            this.kunde.plz,
+            this.kunde.ort,
+            this.kunde.username,
+            this.kunde.password,
         );
         console.log('kunde=', this.kunde);
 

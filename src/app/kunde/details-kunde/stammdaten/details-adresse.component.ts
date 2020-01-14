@@ -9,17 +9,16 @@ import { Adresse } from '../../shared/kunde';
     template: `
         <div class="row mt-2">
             <label class="col col-2"> Adresse </label>
-            <div class="col col-10">{{ adresse.ort }}</div>
-            <label class="col col-2"></label>
-            <div class="col col-10">{{ adresse.plz }}</div>
+            <div class="col col-10">{{ plz }}, {{ ort }}</div>
         </div>
     `,
 })
 export class DetailsAdresseComponent implements OnInit {
     @Input()
-    readonly adresse!: Adresse;
+    readonly plz!: string;
+    readonly ort!: string;
 
     ngOnInit() {
-        console.log(`DetailsAdresseComponent.email=${this.adresse}`);
+        console.log(`DetailsAdresseComponent.ort=${this.ort}`);
     }
 }
