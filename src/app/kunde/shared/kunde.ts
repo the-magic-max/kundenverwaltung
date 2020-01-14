@@ -353,7 +353,7 @@ export class Kunde {
             geburtsdatum: this.geburtsdatum,
             umsatz: {
                 betrag: this.betrag,
-                waehrung: this.waehrung,
+                waehrung: 'EUR',
             },
             homepage: this.homepage,
             geschlecht: this.geschlecht,

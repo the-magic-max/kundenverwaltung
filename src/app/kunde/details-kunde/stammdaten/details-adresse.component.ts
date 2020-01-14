@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Adresse } from '../../shared/kunde';
 
 /**
  * Komponente f&uuml;r das Tag <code>hs-details-adresse</code>
